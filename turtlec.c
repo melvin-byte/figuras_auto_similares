@@ -37,7 +37,7 @@ static bool turtleProcessEvents(Turtle *turtle){
     }
   }
 
-  return sfRenderWindow_isOpen(turtle->window) == sfTrue;
+  return sfRenderWindow_isOpen(turtle->window);
 }
 
 void turtleInit(Turtle *turtle, sfRenderWindow *window, unsigned int width, unsigned int height){
@@ -180,12 +180,12 @@ void turtleUpdateDisplay(Turtle *turtle){
 
 TurtleApp *turtleAppCreate(unsigned int width, unsigned int height, const char *title){
   TurtleApp *app = malloc(sizeof(TurtleApp));
-  sfVideoMode mode = {width, height, 32};
+  sfVideoMode mode = {{width, height}, 32};
 
   if(app == NULL)
     return NULL;
 
-  app->window = sfRenderWindow_create(mode, title, sfResize | sfClose, NULL);
+  app->window = sfRenderWindow_create(mode, title, sfResize | sfClose, sfWindowed, NULL);
   if(app->window == NULL){
     free(app);
     return NULL;
