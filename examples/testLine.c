@@ -15,7 +15,7 @@ void fractal_tree(Turtle *t, float length , int depth){
     turtleRight(t, 20.0);
     fractal_tree(t, length*0.5, depth -1);
     turtleLeft(t, 40.0);
-    fractal_tree(t, length*0.5, depth -1);
+    fractal_tree(t, length*0.7, depth -1);
     turtleRight(t, 20.0);
     turtleBackward(t, length);
 }
@@ -66,7 +66,8 @@ int main(void){
 
   turtleSetColor(t, 255, 100, 0);
   turtleSetSpeed(t, 5.0f);
-  fractal_tree_reto_final(t, 200, 5);
+  fractal_tree(t, 200, 5);
+  //fractal_tree_reto_final(t, 200, 5);
   //Levy(t, 200 , 9);
   turtleAppRun(app);
   turtleAppDestroy(app);
