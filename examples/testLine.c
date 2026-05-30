@@ -1,23 +1,29 @@
 #include "../turtlec.h"
 #include <math.h>
-void fractal_tree(Turtle *t, float length , int depth){
+void fractal_tree(Turtle *t, float length , int depth, int value){
     if(depth == 0){
         return;
     }
+    /*
     if (depth > 5){
-        turtleSetColor(t, 120 , 70 , 20);
+        turtleSetColor(t, 120 , 70 ,50);
     }else{
         turtleSetColor(t, 0 , 200 , 0);
     }
+    */
     
     turtleForward(t , length);
     
     turtleRight(t, 20.0);
-    fractal_tree(t, length*0.5, depth -1);
+    fractal_tree(t, length*0.5, depth -1, (value + 90) % 250);
     turtleLeft(t, 40.0);
-    fractal_tree(t, length*0.7, depth -1);
+    fractal_tree(t, length*0.7, depth -1,  (value + 90) % 250);
     turtleRight(t, 20.0);
+
+    turtleSetColor(t, value, 70, 50);
     turtleBackward(t, length);
+
+
 }
 
 void fractal_tree_reto_final(Turtle *t, float length , int depth){
@@ -66,7 +72,7 @@ int main(void){
 
   turtleSetColor(t, 255, 100, 0);
   turtleSetSpeed(t, 5.0f);
-  fractal_tree(t, 200, 5);
+  fractal_tree(t,200 ,7 ,0 );
   //fractal_tree_reto_final(t, 200, 5);
   //Levy(t, 200 , 9);
   turtleAppRun(app);
